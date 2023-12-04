@@ -1,0 +1,20 @@
+.logo{
+    width: 30px;
+    transform: rotate(-90deg);
+}
+*{
+    font-size: small;
+}
+.logo2{
+    width: 20px;
+    background-color: #ff00bb;
+    border-radius: 8px;
+    font-weight: bold;
+}
+.logo3{
+    width: 18px;
+}
+
+.logo4{
+    width: 20px;
+}
