@@ -31,6 +31,44 @@ app.post('/register', async(req,res)=>{
     }).catch(e=>res.json(e));
 
 });
+app.get('/profile',async (req,res) => {
+    const user = req.session.user;
+    res.json(user)
+});
+
+app.post('/login', async(req,res)=>{
+    let {email,password} = req.body;
+    try {
+        const user = await UserModel.findOne({email});
+        if(user){
+
+           const ispass = await bcrypt.compare(password,user.password);
+           if(ispass){
+            req.session.user = user;
+            res.json(user);
+           }else{
+            res.json(false);
+           }
+        }else{
+            res.json(false);
+        }
+        
+    } catch (error) {
+        res.json(error);
+    }
+
+});
+
+app.get('/logout',(req,res) => {
+    req.session.destroy((err)=>{
+        if(err){
+          res.json(false)
+        }else{
+          res.clearCookie('my-session-cookie')
+          res.json(true)
+        }
+      })
+})
 
 
 

@@ -1,12 +1,11 @@
-import React, { useContext, useEffect } from 'react';
+import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
 import './Header.css';
-import UserDetails, { UserContext } from '../../Contexts/UserContext';
+import  { UserContext } from '../../Contexts/UserContext';
+
 function Header() {
     const {userDetails} = useContext(UserContext);
-    useEffect(()=>{
-        console.log(userDetails);
-    },[])
+    
     return (
         <div>
             <header>
@@ -25,7 +24,7 @@ function Header() {
                             </svg>
                         </div>
                     </div>
-                    <Link to={'/login'} className='d-flex me-4 align-items-center border border-secondary rounded-5 p-2' style={{cursor:'pointer'}}>
+                    <Link to={userDetails ? '/account':'/login'} className='d-flex me-4 align-items-center border border-secondary rounded-5 p-2 text-decoration-none' style={{cursor:'pointer'}}>
                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="logo3">
                             <path strokeLinecap="round" strokeLinejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
                         </svg>
@@ -33,8 +32,10 @@ function Header() {
                             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="logo4">
                                 <path fillRule="evenodd" d="M7.5 6a4.5 4.5 0 119 0 4.5 4.5 0 01-9 0zM3.751 20.105a8.25 8.25 0 0116.498 0 .75.75 0 01-.437.695A18.683 18.683 0 0112 22.5c-2.786 0-5.433-.608-7.812-1.7a.75.75 0 01-.437-.695z" clipRule="evenodd" />
                             </svg>
-
-
+                        
+                        </div>
+                        <div className=' text-secondary ps-2 fw-bold'>
+                        {userDetails ? userDetails.name:null}
                         </div>
                     </Link>
                 </div>

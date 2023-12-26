@@ -20,9 +20,10 @@ function Register() {
     }).then((res)=>{
       setUserDetails(res.data);
       console.log(res.data);
-      alert('Registration Success')
+      alert('Registration Success');
+      navigate('/');
      })
-    .catch(err=>alert(err));
+    .catch(err=>alert('Registration failed', err));
   }
   axios.defaults.withCredentials = true;
 
